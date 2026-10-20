@@ -3,131 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KinoZona</title>
+    <title>KINOZONA</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- Navigacija ir paieška -->
+    <header class="navbar">
         <div class="logo">KINOZONA</div>
-        <nav>
-            <a href="#pagrindinis">Pagrindinis</a>
+        <nav class="nav-links">
+            <a href="#pagrindinis" class="active">Pagrindinis</a>
             <a href="#filmai">Filmai</a>
             <a href="#serialai">Serialai</a>
         </nav>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Ieškoti...">
+        </div>
     </header>
 
     <main>
-        <!-- Pagrindinis / Naujausias -->
+        <!-- PAGRINDINIS SEKTORIUS -->
         <section id="pagrindinis">
-            <div class="latest-banner">
-                <img src="image_2.png" alt="Peaky Blinders The Final">
-                <div class="banner-content">
-                    <h1>PEAKY BLINDERS</h1>
-                    <p>Sugrįžta paskutiniam mūšiui: „Peaky Blinders“ 6-asis sezonas: 1933 metai. Pasibaigus sausajam įstatymui, opijaus verslas atveria duris į naujus, tačiau itin pavojingus aljansus. Šeštasis ir pats paskutinis kultinio serialo sezonas panardina Šelbių šeimą į giliausią iki šiol patirtą krizę.</p>
-                    <a href="#serialai" class="watch-btn">Žiūrėti</a>
+            <!-- Pagrindinis baneris (Naujausias) -->
+            <div class="hero-banner">
+                <img src="image_2.png" alt="Peaky Blinders" class="hero-bg">
+                <div class="hero-overlay">
+                    <span class="category-tag">NAUJAUSIAS</span>
+                    <h1 class="gold-title">PEAKY BLINDERS</h1>
+                    <p class="hero-desc">
+                        Sugrįžta paskutiniam mūšiui: „Peaky Blinders“ 6-asis sezonas: 1933 metai. Pasibaigus sausajam įstatymui, opijaus verslas atveria duris į naujus, tačiau itin pavojingus aljansus. Šeštasis ir pats paskutinis kultinio serialo sezonas panardina Šelbių šeimą į giliausią iki šiol patirtą krizę.
+                    </p>
+                    <a href="#serialai" class="btn-gold">▶ ŽIŪRĖTI DABAR</a>
                 </div>
             </div>
 
-            <!-- Naujausi pasirinkimai -->
-            <div class="cards-grid">
-                <div class="card">
-                    <img src="image_3.png" alt="6 Sezonas 2 Serija">
-                    <h3>6 Sezonas · 2 serija</h3>
-                    <a href="#serijos-6-2">Žiūrėti</a>
+            <!-- Kategorijų kortelės -->
+            <div class="category-banners">
+                <div class="cat-card">
+                    <h2>FILMAI</h2>
+                    <p>ŽIŪRĖK SAVO MĖGSTAMUS FILMUS →</p>
                 </div>
-                <div class="card">
-                    <img src="image_4.png" alt="6 Sezonas 1 Serija">
-                    <h3>6 Sezonas · 1 serija</h3>
-                    <a href="#serijos-6-1">Žiūrėti</a>
+                <div class="cat-card">
+                    <h2>SERIALAI</h2>
+                    <p>POPULIARIAUSI IR NAUJAUSI SERIALAI →</p>
                 </div>
             </div>
 
-            <!-- Populiariausi pasirinkimai -->
-            <div class="cards-grid">
-                <div class="card">
-                    <img src="image_5.png" alt="4 Sezonas 1 Serija">
-                    <h3>4 Sezonas · 1 serija</h3>
-                    <a href="#serijos-4-1">Žiūrėti</a>
+            <!-- Naujausi sekcija -->
+            <div class="section-header">
+                <h2>Naujausi</h2>
+                <a href="#serialai" class="see-all">Žiūrėti visus →</a>
+            </div>
+            <div class="content-grid">
+                <div class="media-card">
+                    <img src="image_3.png" alt="6 Sezonas 2 serija">
+                    <h3>Peaky Blinders</h3>
+                    <p>6 Sezonas · 2 serija</p>
                 </div>
-                <div class="card">
-                    <img src="image_6.png" alt="2 Sezonas 3 Serija">
-                    <h3>Peaky Blinders · 2 Sezonas 3 serija</h3>
-                    <a href="#serijos-2-3">Žiūrėti</a>
+                <div class="media-card">
+                    <img src="image_4.png" alt="6 Sezonas 1 serija">
+                    <h3>Peaky Blinders</h3>
+                    <p>6 Sezonas · 1 serija</p>
+                </div>
+            </div>
+
+            <!-- Populiariausi sekcija -->
+            <div class="section-header">
+                <h2>Populiariausi</h2>
+                <a href="#serialai" class="see-all">Žiūrėti visus →</a>
+            </div>
+            <div class="content-grid">
+                <div class="media-card">
+                    <img src="image_5.png" alt="4 Sezonas 1 serija">
+                    <h3>Peaky Blinders</h3>
+                    <p>4 Sezonas · 1 serija</p>
+                </div>
+                <div class="media-card">
+                    <img src="image_6.png" alt="2 Sezonas 3 serija">
+                    <h3>Peaky Blinders</h3>
+                    <p>2 Sezonas · 3 serija</p>
                 </div>
             </div>
         </section>
 
-        <!-- Filmai (Tuščia) -->
-        <section id="filmai">
-            <h2>Filmai</h2>
-            <div class="no-movies-message">
+        <!-- FILMAI SEKTORIUS -->
+        <section id="filmai" style="padding: 60px 0;">
+            <div class="section-header">
+                <h2>Filmai</h2>
+            </div>
+            <div class="empty-message" style="text-align: center; color: #ffffff; font-size: 20px; font-weight: bold; padding: 60px 0;">
                 Šiuo momentu filmų nėra
             </div>
         </section>
 
-        <!-- Serialai / Peaky Blinders 1 Sezonas -->
+        <!-- SERIALAI SEKTORIUS -->
         <section id="serialai">
-            <h2>Peaky Blinders</h2>
-            <p class="series-desc">Peaky Blinders – tai kultinė britų kriminalinė drama, pasakojanti apie Šelbių šeimos ir jų vadovaujamos gaujos iškilimą nuo gatvės nusikaltėlių iki pasaulinio lygio politinių ir verslo magnatų.</p>
-            
-            <div class="episodes-list">
-                <!-- 1 Serija -->
-                <div class="episode-card">
-                    <h3>1 sezonas · 1 serija</h3>
-                    <p>Tomis Šelbis per klaidą pavagia vyriausybės ginklų siuntą, o į Birmingemą juos surasti atvyksta inspektorius Kempbelas.</p>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/bA__fScME3A?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
-                    </div>
-                </div>
-
-                <!-- 2 Serija -->
-                <div class="episode-card">
-                    <h3>1 sezonas · 2 serija</h3>
-                    <p>Tomis pradeda karą su vietiniais čigonais (Li šeima) ir atsisako atiduoti pavogtus ginklus Kempbelui.</p>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/cse5nQH9eok?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
-                    </div>
-                </div>
-
-                <!-- 3 Serija -->
-                <div class="episode-card">
-                    <h3>1 sezonas · 3 serija</h3>
-                    <p>Greisė padeda Tomiui paslėpti ginklus nuo policijos kratos, o Fredis su Ada slapta susituokia.</p>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/Vh29BrG7RPA?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
-                    </div>
-                </div>
-
-                <!-- 4 Serija -->
-                <div class="episode-card">
-                    <h3>1 sezonas · 4 serija</h3>
-                    <p>Bilis Kimberis pasisamdo „Peaky Blinders“ apsaugai, o Tomis išduoda savo sesers vyrą Fredį policijai, kad apsaugotų šeimos verslą.</p>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/qkfHwqH5pOc?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
-                    </div>
-                </div>
-
-                <!-- 5 Serija -->
-                <div class="episode-card">
-                    <h3>1 sezonas · 5 serija</h3>
-                    <p>Greisė sužino, kur paslėpti pavogti ginklai, ir išduoda jų vietą Kempbelul, tačiau kartu įsimyli Tomį.</p>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/ga3boRKxTeI?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
-                    </div>
-                </div>
-
-                <!-- 6 Serija -->
-                <div class="episode-card">
-                    <h3>1 sezonas · 6 serija</h3>
-                    <p>Kimberį ir perima jo lažybų imperiją. Fredis išlaisvinamas bet ivyksta labai komplikuoti reikalai.</p>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/GSaLGE6g7cI?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2 class="gold-title">Peaky Blinders</h2>
             </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
-</body>
-</html>
+            <p
