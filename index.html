@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="KinoZona – filmų ir serialų katalogas.">
+  <title>KinoZona — filmai ir serialai</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="KinoZona pradžia">KINOZONA</a>
+    <nav aria-label="Pagrindinė navigacija">
+      <a class="nav-link active" href="#pagrindinis">Pagrindinis</a>
+      <a class="nav-link" href="#filmai" data-open-view="movies">Filmai</a>
+      <a class="nav-link" href="#serialai" data-open-view="series">Serialai</a>
+    </nav>
+    <form class="search" id="searchForm" role="search">
+      <button aria-label="Ieškoti" type="submit" class="search-icon">⌕</button>
+      <input id="searchInput" type="search" placeholder="Ieškoti..." aria-label="Ieškoti filmų ir serialų">
+    </form>
+  </header>
+
+  <main id="pagrindinis">
+    <section class="hero" aria-label="Pagrindinis rekomenduojamas serialas">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <span class="eyebrow">NAUJAUSIAS</span>
+        <h1>PEAKY BLINDERS</h1>
+        <p>Birmingemo gaujų karai, šeimos lojalumas ir nepaliaujama ambicija. Legendinis serialas, kuris tapo kultu.</p>
+        <button class="gold-button" id="heroWatch"><span aria-hidden="true">▶</span> ŽIŪRĖTI DABAR</button>
+      </div>
+      <div class="hero-dots" aria-hidden="true"><i class="selected"></i><i></i><i></i><i></i></div>
+    </section>
+
+    <section class="category-tiles" aria-label="Katalogo skiltys">
+      <button class="category-tile movie-tile" data-open-view="movies">
+        <span class="tile-art film-art" aria-hidden="true">🎞</span>
+        <span class="tile-copy"><strong>FILMAI</strong><small>ŽIŪRĖK SAVO MĖGSTAMUS FILMUS</small></span>
+        <span class="tile-arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="category-tile series-tile" data-open-view="series">
+        <span class="tile-art series-art" aria-hidden="true">♟</span>
+        <span class="tile-copy"><strong>SERIALAI</strong><small>POPULIARIAUSI IR NAUJAUSI SERIALAI</small></span>
+        <span class="tile-arrow" aria-hidden="true">→</span>
+      </button>
+    </section>
+
+    <div id="homeView">
+      <section class="catalog-row">
+        <div class="section-heading"><h2>Naujausi</h2><a href="#naujausi" data-open-view="all">Žiūrėti visus <span>›</span></a></div>
+        <div class="poster-row" id="newestRow"></div>
+      </section>
+      <section class="catalog-row">
+        <div class="section-heading"><h2>Populiariausi</h2><a href="#populiariausi" data-open-view="all">Žiūrėti visus <span>›</span></a></div>
+        <div class="poster-row" id="popularRow"></div>
+      </section>
+    </div>
+
+    <section id="catalogView" class="catalog-page hidden">
+      <div class="catalog-title-line">
+        <button id="backHome" class="back-button">← Pagrindinis</button>
+        <h2 id="catalogTitle">Serialai</h2>
+      </div>
+      <div id="catalogGrid" class="catalog-grid"></div>
+    </section>
+
+    <section id="detailView" class="detail-page hidden">
+      <button id="backCatalog" class="back-button">← Grįžti į serialus</button>
+      <div class="detail-intro">
+        <div>
+          <span class="eyebrow">SERIALAS</span>
+          <h2 id="detailTitle">Peaky Blinders</h2>
+          <p id="detailDescription">Galinga Birmingemo gauja, vadovaujama Tomo Šelbio. Įtampa, politika, šeima ir pavojingi priešai.</p>
+        </div>
+        <div class="season-picker">
+          <label for="seasonSelect">Sezonas</label>
+          <select id="seasonSelect">
+            <option value="1">1 sezonas</option><option value="2">2 sezonas</option>
+            <option value="3">3 sezonas</option><option value="4">4 sezonas</option><option value="5">5 sezonas</option>
+          </select>
+        </div>
+      </div>
+      <h3 class="episodes-heading">Serijos</h3>
+      <div id="episodesList" class="episodes-list"></div>
+    </section>
+
+    <section id="playerView" class="player-page hidden">
+      <button id="backEpisodes" class="back-button">← Grįžti į serijas</button>
+      <h2 id="playerTitle">Peaky Blinders — 1 serija</h2>
+      <div id="videoContainer" class="video-container">
+        <p>Čia bus rodomas pasirinktas vaizdo įrašas.</p>
+      </div>
+      <p class="player-note">Vaizdo įrašams naudok savo turinį arba šaltinius, kurie leidžia įterpimą į kitą svetainę.</p>
+    </section>
+  </main>
+
+  <footer><span>KINOZONA</span><small>Asmeninis filmų ir serialų katalogo projektas</small></footer>
+  <script src="script.js"></script>
+</body>
+</html>
