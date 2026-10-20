@@ -2,9 +2,9 @@ const seasons = {
   1: {year:"1919", description:"Pirmasis sezono veiksmas, prasidedantis 1919 metais, panardina į paslapčių ir nenuspėjamų posūkių sūkurį, kur tiesa turi savo kainą, o realybės ribos pamažu nyksta.", image:"assets/peaky-1.jpg"},
   2: {year:"1922", description:"Šelbių šeima plečia savo nelegalų lažybų verslą į Londoną, kur įsivelia į karą tarp žydų bei italų mafijos gaujų.", image:"assets/peaky-2.jpg"},
   3: {year:"1924", description:"Tomas įtraukiamas į tarptautinį rusų aristokratų bei britų slaptųjų tarnybų sąmokslą, kuris įtraukia jo šeimą ir priverčia rizikuoti viskuo.", image:"assets/peaky-3.jpg"},
-  4: {year:"1925", description:"Po skaudžių netekčių Šelbių šeima grįžta į Birmingemą. Senos sąskaitos dar neužverstos, o naujas priešas grasina sugriauti viską, ką jie sukūrė.", image:"assets/hero-main.jpg"},
-  5: {year:"1929", description:"Finansų krizė sukrečia pasaulį, o Tomo Šelbio politinės ambicijos atveria duris dar pavojingesniems žaidimams. Šeimos vienybė vėl išbandoma.", image:"assets/hero-main.jpg"},
-  6: {year:"1933", description:"Šeštajame sezone Šelbių šeima susiduria su skaudžiomis netektimis, naujomis grėsmėmis ir lemtingais pasirinkimais. Tai tamsus etapas, kuriame kiekvienas sprendimas turi savo kainą.", image:"assets/hero-main.jpg"}
+  4: {year:"1925–1926", description:"Šeimos nariai išteisinami paskutinę minutę, tačiau juos pradeda medžioti Niujorko mafija.", image:"assets/peaky-4.jpg"},
+  5: {year:"1929–1930", description:"Ekonominė krizė sužlugdo šeimos investicijas Amerikoje, todėl Tomas ieško naujų uždarbio būdų politikoje.", image:"assets/peaky-5.jpg"},
+  6: {year:"1934–1936", description:"Tomas išgyvena šeimos narių netektis, kovoja su savo paties ligos diagnoze ir sudaro paskutinius didelius opijaus sandorius su fašistais bei amerikiečiais.", image:"assets/peaky-6.jpg"}
 };
 // Add official, authorized video URLs here when you have them. Leave blank until then.
 const episodeVideoUrls = {};
@@ -32,7 +32,7 @@ function showSeason(number) {
   homeView.classList.add("hidden");
   seasonView.classList.remove("hidden");
   document.querySelector("#seasonImage").src = data.image;
-  document.querySelector("#seasonImage").alt = n <= 3 ? `Peaky Blinders ${n} sezono viršelis` : `Peaky Blinders – bendras fonas; ${n} sezono atskiras viršelis dar neįkeltas`;
+  document.querySelector("#seasonImage").alt = `Peaky Blinders ${n} sezono viršelis`;
   document.querySelector("#seasonTitle").textContent = `${n} SEZONAS`;
   document.querySelector("#seasonYear").textContent = `BIRMINGEMAS · ${data.year}`;
   document.querySelector("#seasonDescription").textContent = data.description;
