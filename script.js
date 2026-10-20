@@ -1,73 +1,119 @@
-const items = [
- {title:"Peaky Blinders",type:"Serialas",year:"2022",short:"PEAKY BLINDERS",popular:true,series:true,image:"peaky-2.jpg",featured:true},
- {title:"Peaky Blinders",type:"6 sezonas",year:"2 serija",short:"PEAKY BLINDERS",popular:false,series:true,image:"peaky-4.jpg",season:6,episode:2,featured:true},
- {title:"Peaky Blinders",type:"6 sezonas",year:"1 serija",short:"PEAKY BLINDERS",popular:false,series:true,image:"peaky-5.jpg",season:6,episode:1,featured:true},
- {title:"Peaky Blinders",type:"4 sezonas",year:"1 serija",short:"PEAKY BLINDERS",popular:true,series:true,image:"peaky-6.jpg",season:4,episode:1,featured:true},
- {title:"Peaky Blinders",type:"2 sezonas",year:"3 serija",short:"PEAKY BLINDERS",popular:true,series:true,image:"peaky-7.jpg",season:2,episode:3,featured:true}
-];
-const episodeDescriptions = [
- "Tomis Šelbis per klaidą pavagia vyriausybės ginklų siuntą, o į Birmingemą juos surasti atvyksta inspektorius Kempbelas.",
- "Tomis pradeda karą su vietiniais čigonais (Li šeima) ir atsisako atiduoti pavogtus ginklus Kempbelui.",
- "Greisė padeda Tomiui paslėpti ginklus nuo policijos kratos, o Fredis su Ada slapta susituokia.",
- "Bilis Kimberis pasisamdo „Peaky Blinders“ apsaugai, o Tomis išduoda savo sesers vyrą Fredį policijai, kad apsaugotų šeimos verslą.",
- "Greisė sužino, kur paslėpti pavogti ginklai, ir išduoda jų vietą Kempbelui, tačiau kartu įsimyli Tomį.",
- "Tomis įveikia Kimberį ir perima jo lažybų imperiją. Fredis išlaisvinamas, bet įvyksta labai komplikuoti reikalai."
-];
-const VIDEO_URLS = {
- "1": "https://www.youtube.com/embed/bA__fScME3A?rel=0",
- "2": "https://www.youtube.com/embed/cse5nQH9eok?rel=0",
- "3": "https://www.youtube.com/embed/Vh29BrG7RPA?rel=0",
- "4": "https://www.youtube.com/embed/qkfHwqH5pOc?rel=0",
- "5": "https://www.youtube.com/embed/ga3boRKxTeI?rel=0",
- "6": "https://www.youtube.com/embed/GSaLGE6g7cI?rel=0"
-};
 const $ = id => document.getElementById(id);
-let currentView="home", currentItem=items[0];
-function card(item){
- const el=document.createElement("article");el.className="poster-card";el.tabIndex=0;
- const img=item.image?`<img class="poster-image" src="${item.image}" alt="${item.title} viršelis">`:`<div class="poster-art"><b>${item.short}</b></div>`;
- el.innerHTML=`${img}<h3>${item.title}</h3><p>${item.type} &nbsp;•&nbsp; ${item.year}</p>`;
- el.addEventListener("click",()=>item.episode?openPlayer(item,item.season,item.episode):openDetail(item));
- el.addEventListener("keydown",e=>{if(e.key==="Enter")el.click()});return el;
+const descriptions = {
+  1: "Tomis Šelbis per klaidą pavagia vyriausybės ginklų siuntą, o į Birmingemą juos surasti atvyksta inspektorius Kempbelas.",
+  2: "Tomis pradeda karą su vietiniais čigonais (Li šeima) ir atsisako atiduoti pavogtus ginklus Kempbelui.",
+  3: "Greisė padeda Tomiui paslėpti ginklus nuo policijos kratos, o Fredis su Ada slapta susituokia.",
+  4: "Bilis Kimberis pasisamdo „Peaky Blinders“ apsaugai, o Tomis išduoda savo sesers vyrą Fredį policijai, kad apsaugotų šeimos verslą.",
+  5: "Greisė sužino, kur paslėpti pavogti ginklai, ir išduoda jų vietą Kempbelui, tačiau kartu įsimyli Tomį.",
+  6: "Tomis susidoroja su Bilio Kimberio grėsme ir siekia perimti jo lažybų imperiją. Fredis išlaisvinamas, tačiau šeimos laukia nauji sudėtingi išbandymai."
+};
+const videoUrls = {
+  1: "https://www.youtube.com/embed/bA__fScME3A?rel=0",
+  2: "https://www.youtube.com/embed/cse5nQH9eok?rel=0",
+  3: "https://www.youtube.com/embed/Vh29BrG7RPA?rel=0",
+  4: "https://www.youtube.com/embed/qkfHwqH5pOc?rel=0",
+  5: "https://www.youtube.com/embed/ga3boRKxTeI?rel=0",
+  6: "https://www.youtube.com/embed/GSaLGE6g7cI?rel=0"
+};
+const imageForEpisode = n => `images/peaky-${n === 1 ? 4 : n === 2 ? 3 : n === 3 ? 6 : n === 4 ? 5 : n === 5 ? 7 : 2}.jpg`;
+let currentSeason = 1;
+let currentEpisode = 1;
+let currentView = "home";
+
+function showView(view) {
+  currentView = view;
+  ["homeView", "catalogView", "detailView", "playerView"].forEach(id => $(id).classList.add("hidden"));
+  const target = ({home:"homeView", movies:"catalogView", series:"catalogView", detail:"detailView", player:"playerView"})[view] || "homeView";
+  $(target).classList.remove("hidden");
+  document.querySelectorAll(".nav-link").forEach(btn => btn.classList.toggle("active", btn.dataset.view === view || (view === "detail" && btn.dataset.view === "series")));
+  window.scrollTo({top:0, behavior:"smooth"});
 }
-function renderCards(id,list){const t=$(id);t.innerHTML="";list.forEach(i=>t.append(card(i)))}
-renderCards("newestRow",items.slice(1,3));renderCards("popularRow",[items[3],items[4]]);
-function setActiveNav(view){document.querySelectorAll(".nav-link").forEach(a=>a.classList.toggle("active",a.dataset.openView===view||(view==="home"&&a.getAttribute("href")==="#pagrindinis")))}
-function hideAll(){["homeView","catalogView","detailView","playerView"].forEach(id=>$(id).classList.add("hidden"));document.querySelector(".hero").classList.toggle("hidden",currentView!=="home");document.querySelector(".category-tiles").classList.toggle("hidden",currentView!=="home")}
-function openHome(){currentView="home";hideAll();$("homeView").classList.remove("hidden");$("pagrindinis").scrollIntoView();setActiveNav("home")}
-function openCatalog(view="all",query=""){
- currentView="catalog";hideAll();$("catalogView").classList.remove("hidden");
- let list=view==="movies"?[]:items.filter(i=>i.title.toLowerCase().includes(query.toLowerCase()));
- $("catalogTitle").textContent=view==="movies"?"Filmai":view==="series"?"Serialai":"Paieškos rezultatai";
- const grid=$("catalogGrid");grid.innerHTML="";
- if(view==="movies")grid.innerHTML='<p class="empty-movies">Šiuo momentu filmų dar nėra.</p>';
- else list.slice(0,view==="series"?1:8).forEach(i=>grid.append(card(i)));
- if(!list.length&&view!=="movies")grid.innerHTML='<p>Nieko nerasta. Pabandyk kitą pavadinimą.</p>';
- setActiveNav(view);$("catalogView").scrollIntoView({behavior:"smooth",block:"start"});
+function episodeCard({title, season, episode, image, badge, description}) {
+  const card = document.createElement("article");
+  card.className = "media-card";
+  card.tabIndex = 0;
+  card.setAttribute("role", "button");
+  card.setAttribute("aria-label", `Žiūrėti ${title}`);
+  card.innerHTML = `<div class="card-image-wrap"><img class="card-image" src="${image}" alt="${title}" loading="lazy"><span class="card-badge">${badge}</span></div><div class="card-copy"><h3>${title}</h3><p>${description}</p><div class="card-foot"><span class="card-meta">Peaky Blinders · ${season} sezonas · ${episode} serija</span><button class="card-play" type="button">▶ ŽIŪRĖTI</button></div></div>`;
+  const open = () => openPlayer(season, episode);
+  card.addEventListener("click", open);
+  card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  card.querySelector("button").addEventListener("click", e => { e.stopPropagation(); open(); });
+  return card;
 }
-function openDetail(item){
- currentItem=items[0];currentView="detail";hideAll();$("detailView").classList.remove("hidden");
- $("detailTitle").textContent="Peaky Blinders";
- $("detailDescription").textContent="Peaky Blinders – tai kultinė britų kriminalinė drama, pasakojanti apie Šelbių šeimos ir jų vadovaujamos gaujos iškilimą nuo gatvės nusikaltėlių iki pasaulinio lygio politinių ir verslo magnatų.";
- $("backCatalog").textContent="← Grįžti į serialus";$("seasonSelect").value="1";renderEpisodes();$("detailView").scrollIntoView({behavior:"smooth"});
+function renderHomeCards() {
+  const latest = [
+    {title:"Peaky Blinders", season:6, episode:2, image:"images/peaky-3.jpg", badge:"NAUJAUSIA", description:"6 sezonas · 2 serija. Tęsk Šelbių šeimos istoriją."},
+    {title:"Peaky Blinders", season:6, episode:1, image:"images/peaky-4.jpg", badge:"6 SEZONAS", description:"6 sezonas · 1 serija. Paskutinio sezono pradžia."}
+  ];
+  const popular = [
+    {title:"Peaky Blinders", season:4, episode:1, image:"images/peaky-6.jpg", badge:"POPULIARUS", description:"4 sezonas · 1 serija."},
+    {title:"Peaky Blinders", season:2, episode:3, image:"images/peaky-5.jpg", badge:"ŽIŪROVŲ PASIRINKIMAS", description:"2 sezonas · 3 serija."}
+  ];
+  for (const [id, list] of [["latestCards", latest], ["popularCards", popular]]) {
+    const target = $(id); target.replaceChildren(); list.forEach(item => target.append(episodeCard(item)));
+  }
 }
-function renderEpisodes(){
- const list=$("episodesList");list.innerHTML="";
- episodeDescriptions.forEach((desc,index)=>{const n=index+1,ep=document.createElement("article");ep.className="episode";ep.tabIndex=0;
- ep.innerHTML=`<div class="episode-number">${n}</div><div class="episode-thumb">▶</div><div><h3>1 sezonas · ${n} serija</h3><p>${desc}</p></div><time>Serija ${n}</time>`;
- ep.addEventListener("click",()=>openPlayer(currentItem,1,n));ep.addEventListener("keydown",e=>{if(e.key==="Enter")ep.click()});list.append(ep)});
+function openCatalog(type, query = "") {
+  showView(type === "movies" ? "movies" : "series");
+  const title = $("catalogTitle");
+  const content = $("catalogContent");
+  content.replaceChildren();
+  if (type === "movies") {
+    title.textContent = "Filmai";
+    content.innerHTML = '<div class="empty-state"><h3>Šiuo momentu filmų dar nėra.</h3><p>Filmai bus pridėti vėliau.</p></div>';
+    return;
+  }
+  title.textContent = query ? "Paieškos rezultatai" : "Serialai";
+  if (query && !"peaky blinders".includes(query.toLowerCase())) {
+    content.innerHTML = '<div class="empty-state"><h3>Nieko nerasta</h3><p>Pabandyk kitą paieškos žodį.</p></div>';
+    return;
+  }
+  const card = document.createElement("article");
+  card.className = "media-card single-series"; card.tabIndex = 0; card.setAttribute("role", "button");
+  card.innerHTML = '<div class="card-image-wrap"><img class="card-image" src="images/peaky-1.jpg" alt="Peaky Blinders serialo viršelis" loading="lazy"><span class="card-badge">SERIALAS</span></div><div class="card-copy"><h3>Peaky Blinders</h3><p>Kultinė britų kriminalinė drama apie Šelbių šeimą.</p><div class="card-foot"><span class="card-meta">6 sezonai</span><button class="card-play" type="button">ATIDARYTI SERIALĄ</button></div></div>';
+  const open = () => openDetail(6);
+  card.addEventListener("click", open); card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  card.querySelector("button").addEventListener("click", e => { e.stopPropagation(); open(); });
+  content.append(card);
 }
-function openPlayer(item,season=1,episode=1){
- currentItem=item;currentView="player";hideAll();$("playerView").classList.remove("hidden");
- $("playerTitle").textContent=`Peaky Blinders — ${season} sezonas, ${episode} serija`;
- const note=$("playerDescription");if(note)note.textContent=season===1?episodeDescriptions[episode-1]||"":"";
- const container=$("videoContainer");container.innerHTML="";
- const url=VIDEO_URLS[String(episode)]||"";
- if(url){const iframe=document.createElement("iframe");iframe.src=url;iframe.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";iframe.allowFullscreen=true;iframe.referrerPolicy="strict-origin-when-cross-origin";container.append(iframe)}
- $("playerView").scrollIntoView({behavior:"smooth"});
+function openDetail(season = currentSeason) {
+  currentSeason = Number(season) || 1;
+  $("seasonSelect").value = String(currentSeason);
+  showView("detail");
+  renderEpisodes();
 }
-document.querySelectorAll("[data-open-view]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();openCatalog(el.dataset.openView)}));
-$("backHome").addEventListener("click",openHome);$("backCatalog").addEventListener("click",()=>openCatalog("series"));
-$("backEpisodes").addEventListener("click",()=>openDetail(currentItem));$("seasonSelect").addEventListener("change",renderEpisodes);
-$("heroWatch").addEventListener("click",()=>openPlayer(items[1],6,2));
-$("searchForm").addEventListener("submit",e=>{e.preventDefault();openCatalog("all",$("searchInput").value.trim())});
+function renderEpisodes() {
+  const target = $("episodesList"); target.replaceChildren();
+  for (let n = 1; n <= 6; n++) {
+    const row = document.createElement("article"); row.className = "episode"; row.tabIndex = 0; row.setAttribute("role", "button");
+    const description = currentSeason === 1 ? descriptions[n] : `${currentSeason} sezono ${n} serija. Serijos aprašymas bus papildytas.`;
+    row.innerHTML = `<span class="episode-number">${String(n).padStart(2,"0")}</span><img class="episode-image" src="${imageForEpisode(n)}" alt="${currentSeason} sezono ${n} serija" loading="lazy"><div class="episode-copy"><h4>${currentSeason} sezonas · ${n} serija</h4><p>${description}</p></div><span class="episode-action" aria-hidden="true">▶</span>`;
+    const open = () => openPlayer(currentSeason, n);
+    row.addEventListener("click", open); row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") {e.preventDefault();open();} });
+    target.append(row);
+  }
+}
+function openPlayer(season, episode) {
+  currentSeason = Number(season); currentEpisode = Number(episode);
+  showView("player");
+  $("playerTitle").textContent = `Peaky Blinders — ${currentSeason} sezonas, ${currentEpisode} serija`;
+  $("currentEpisodeDescription").textContent = currentSeason === 1 ? descriptions[currentEpisode] : `${currentSeason} sezono ${currentEpisode} serija.`;
+  const container = $("videoContainer"); container.replaceChildren();
+  const url = currentSeason === 1 ? videoUrls[currentEpisode] : "";
+  if (url) {
+    const frame = document.createElement("iframe"); frame.src = url; frame.title = `Peaky Blinders ${currentEpisode} serija`; frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"; frame.allowFullscreen = true; frame.referrerPolicy = "strict-origin-when-cross-origin"; container.append(frame);
+  } else {
+    container.innerHTML = '<p>Šiai serijai dar nepridėta vaizdo nuoroda. Galima pridėti nuorodą į teisėtai įterpiamą vaizdo įrašą.</p>';
+  }
+}
+document.querySelectorAll(".nav-link").forEach(btn => btn.addEventListener("click", () => btn.dataset.view === "home" ? showView("home") : openCatalog(btn.dataset.view)));
+$("watchLatest").addEventListener("click", () => openPlayer(6, 2));
+$("moreInfo").addEventListener("click", () => openDetail(6));
+$("catalogBack").addEventListener("click", () => showView("home"));
+$("detailBack").addEventListener("click", () => openCatalog("series"));
+$("playerBack").addEventListener("click", () => openDetail(currentSeason));
+$("seasonSelect").addEventListener("change", e => { currentSeason = Number(e.target.value); renderEpisodes(); });
+$("searchForm").addEventListener("submit", e => { e.preventDefault(); const query = $("searchInput").value.trim(); if (!query) { openCatalog("series"); return; } openCatalog("series", query); });
+$("toTop").addEventListener("click", e => { e.preventDefault(); showView("home"); });
+renderHomeCards();

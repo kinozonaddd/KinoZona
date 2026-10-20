@@ -4,97 +4,69 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080808">
-  <meta name="description" content="KinoZona – filmų ir serialų katalogas.">
-  <title>KinoZona — filmai ir serialai</title>
+  <meta name="description" content="KinoZona – Peaky Blinders serijų katalogas.">
+  <title>KinoZona | Filmai ir serialai</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="KinoZona pradžia">KINOZONA</a>
-    <nav aria-label="Pagrindinė navigacija">
-      <a class="nav-link active" href="#pagrindinis">Pagrindinis</a>
-      <a class="nav-link" href="#filmai" data-open-view="movies">Filmai</a>
-      <a class="nav-link" href="#serialai" data-open-view="series">Serialai</a>
-    </nav>
-    <form class="search" id="searchForm" role="search">
-      <button aria-label="Ieškoti" type="submit" class="search-icon">⌕</button>
-      <input id="searchInput" type="search" placeholder="Ieškoti..." aria-label="Ieškoti filmų ir serialų">
-    </form>
-  </header>
-
-  <main id="pagrindinis">
-    <section class="hero" aria-label="Pagrindinis rekomenduojamas serialas">
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <span class="eyebrow">NAUJAUSIAS</span>
-        <p class="hero-description">Sugrįžta paskutiniam mūšiui: „Peaky Blinders“ 6-asis sezonas: 1933 metai. Pasibaigus sausajam įstatymui, opijaus verslas atveria duris į naujus, tačiau itin pavojingus aljansus. Šeštasis ir pats paskutinis kultinio serialo sezonas panardina Šelbių šeimą į giliausią iki šiol patirtą krizę.</p>
-        <button class="gold-button" id="heroWatch"><span aria-hidden="true">▶</span> ŽIŪRĖTI DABAR</button>
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="KinoZona pradžia">KINO<span>ZONA</span></a>
+  <nav aria-label="Pagrindinė navigacija">
+    <button class="nav-link active" data-view="home">Pagrindinis</button>
+    <button class="nav-link" data-view="movies">Filmai</button>
+    <button class="nav-link" data-view="series">Serialai</button>
+  </nav>
+  <form id="searchForm" class="search" role="search">
+    <button type="submit" aria-label="Ieškoti">⌕</button>
+    <input id="searchInput" type="search" placeholder="Ieškoti..." aria-label="Ieškoti kataloge">
+  </form>
+</header>
+<main>
+  <section id="homeView">
+    <section class="hero" aria-label="Peaky Blinders rekomendacija">
+      <img class="hero-image" src="images/peaky-2.jpg" alt="Peaky Blinders – The Final" fetchpriority="high">
+      <div class="hero-overlay"></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> KINOZONA ORIGINALŲ KATALOGAS</p>
+        <h1>PEAKY<br>BLINDERS</h1>
+        <p class="hero-description">Sugrįžta paskutiniam mūšiui: „Peaky Blinders“ 6-asis sezonas. 1933 metai. Pasibaigus sausajam įstatymui, opijaus verslas atveria duris į naujus, tačiau itin pavojingus aljansus. Šeštasis ir pats paskutinis kultinio serialo sezonas panardina Šelbių šeimą į giliausią iki šiol patirtą krizę.</p>
+        <div class="hero-actions"><button class="primary-button" id="watchLatest">▶ ŽIŪRĖTI DABAR</button><button class="secondary-button" id="moreInfo">ⓘ Daugiau informacijos</button></div>
+        <p class="hero-meta"><span>● 6 sezonas</span><span>Drama · Kriminalinis</span><span>HD</span></p>
       </div>
-      <div class="hero-dots" aria-hidden="true"><i class="selected"></i><i></i><i></i><i></i></div>
+      <div class="hero-gradient-bottom"></div>
     </section>
-
-    <section class="category-tiles" aria-label="Katalogo skiltys">
-      <button class="category-tile movie-tile" data-open-view="movies">
-        <span class="tile-art film-art" aria-hidden="true">🎞</span>
-        <span class="tile-copy"><strong>FILMAI</strong><small>ŽIŪRĖK SAVO MĖGSTAMUS FILMUS</small></span>
-        <span class="tile-arrow" aria-hidden="true">→</span>
-      </button>
-      <button class="category-tile series-tile" data-open-view="series">
-        <span class="tile-art series-art" aria-hidden="true">♟</span>
-        <span class="tile-copy"><strong>SERIALAI</strong><small>POPULIARIAUSI IR NAUJAUSI SERIALAI</small></span>
-        <span class="tile-arrow" aria-hidden="true">→</span>
-      </button>
+    <section class="content-row">
+      <div class="row-heading"><h2>Naujausi</h2><span>Peaky Blinders serijos</span></div>
+      <div class="cards two-cards" id="latestCards"></div>
     </section>
-
-    <div id="homeView">
-      <section class="catalog-row">
-        <div class="section-heading"><h2>Naujausi</h2><a href="#naujausi" data-open-view="all">Žiūrėti visus <span>›</span></a></div>
-        <div class="poster-row" id="newestRow"></div>
-      </section>
-      <section class="catalog-row">
-        <div class="section-heading"><h2>Populiariausi</h2><a href="#populiariausi" data-open-view="all">Žiūrėti visus <span>›</span></a></div>
-        <div class="poster-row" id="popularRow"></div>
-      </section>
+    <section class="content-row">
+      <div class="row-heading"><h2>Populiariausi</h2><span>Žiūrovų pasirinkimai</span></div>
+      <div class="cards two-cards" id="popularCards"></div>
+    </section>
+  </section>
+  <section id="catalogView" class="page-view hidden">
+    <div class="page-heading"><div><p class="eyebrow">KINOZONA</p><h2 id="catalogTitle">Serialai</h2></div><button id="catalogBack" class="quiet-button">← Pagrindinis</button></div>
+    <div id="catalogContent"></div>
+  </section>
+  <section id="detailView" class="page-view hidden">
+    <button id="detailBack" class="quiet-button">← Grįžti į serialus</button>
+    <div class="series-banner">
+      <img src="images/peaky-1.jpg" alt="Peaky Blinders serialo viršelis">
+      <div class="series-banner-shade"></div>
+      <div class="series-banner-copy"><p class="eyebrow">SERIALAS</p><h2>Peaky Blinders</h2><p>Peaky Blinders – tai kultinė britų kriminalinė drama, pasakojanti apie Šelbių šeimos ir jų vadovaujamos gaujos iškilimą nuo gatvės nusikaltėlių iki pasaulinio lygio politinių ir verslo magnatų.</p><div class="meta-pills"><span>Kriminalinė drama</span><span>6 sezonai</span><span>HD</span></div></div>
     </div>
-
-    <section id="catalogView" class="catalog-page hidden">
-      <div class="catalog-title-line">
-        <button id="backHome" class="back-button">← Pagrindinis</button>
-        <h2 id="catalogTitle">Serialai</h2>
-      </div>
-      <div id="catalogGrid" class="catalog-grid"></div>
-    </section>
-
-    <section id="detailView" class="detail-page hidden">
-      <button id="backCatalog" class="back-button">← Grįžti į serialus</button>
-      <div class="detail-intro">
-        <div>
-          <span class="eyebrow">SERIALAS</span>
-          <h2 id="detailTitle">Peaky Blinders</h2>
-          <p id="detailDescription">Galinga Birmingemo gauja, vadovaujama Tomo Šelbio. Įtampa, politika, šeima ir pavojingi priešai.</p>
-        </div>
-        <div class="season-picker">
-          <label for="seasonSelect">Sezonas</label>
-          <select id="seasonSelect">
-            <option value="1">1 sezonas</option><option value="2">2 sezonas</option><option value="3">3 sezonas</option><option value="4">4 sezonas</option><option value="5">5 sezonas</option><option value="6">6 sezonas</option>
-          </select>
-        </div>
-      </div>
-      <h3 class="episodes-heading">Serijos</h3>
-      <div id="episodesList" class="episodes-list"></div>
-    </section>
-
-    <section id="playerView" class="player-page hidden">
-      <button id="backEpisodes" class="back-button">← Grįžti į serijas</button>
-      <h2 id="playerTitle">Peaky Blinders — 1 serija</h2>
-      <div id="videoContainer" class="video-container">
-        <p>Čia bus rodomas pasirinktas vaizdo įrašas.</p>
-      </div>
-      <p class="player-note" id="playerDescription"></p>
-    </section>
-  </main>
-
-  <footer><span>KINOZONA</span><small>Asmeninis filmų ir serialų katalogo projektas</small></footer>
-  <script src="script.js"></script>
+    <div class="season-heading"><h3>Serijos</h3><label for="seasonSelect">Sezonas <select id="seasonSelect"><option value="1">1 sezonas</option><option value="2">2 sezonas</option><option value="3">3 sezonas</option><option value="4">4 sezonas</option><option value="5">5 sezonas</option><option value="6">6 sezonas</option></select></label></div>
+    <div id="episodesList" class="episodes-list"></div>
+  </section>
+  <section id="playerView" class="page-view hidden">
+    <button id="playerBack" class="quiet-button">← Grįžti į serijas</button>
+    <div class="player-heading"><p class="eyebrow">DABAR ŽIŪRIMA</p><h2 id="playerTitle">Peaky Blinders</h2></div>
+    <div id="videoContainer" class="video-container"><p>Pasirink seriją, kad paleistum vaizdo įrašą.</p></div>
+    <p class="player-note">Jei vaizdo įrašas nepasileidžia, jo savininkas galėjo išjungti įterpimą arba pašalinti įrašą.</p>
+    <div id="currentEpisodeDescription" class="current-description"></div>
+  </section>
+</main>
+<footer><a class="footer-brand" href="#home">KINOZONA</a><span>Asmeninis filmų ir serialų katalogas</span><a href="#home" id="toTop">Į viršų ↑</a></footer>
+<script src="script.js"></script>
 </body>
 </html>
