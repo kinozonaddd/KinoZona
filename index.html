@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080909">
+  <meta name="description" content="Peaky Blinders – sezonų katalogas ir naujausių serijų skiltis.">
+  <title>Peaky Blinders | Sezonai ir serijos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#pagrindinis" aria-label="Peaky Blinders – pagrindinis">
+      <span class="brand-main">PEAKY</span><span class="brand-sub">BLINDERS</span>
+    </a>
+    <nav class="main-nav" aria-label="Pagrindinė navigacija">
+      <button class="nav-item active" data-home>Pagrindinis</button>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <button class="nav-item" data-season="1">1 sezonas</button>
+      <button class="nav-item" data-season="2">2 sezonas</button>
+      <button class="nav-item" data-season="3">3 sezonas</button>
+      <button class="nav-item" data-season="4">4 sezonas</button>
+      <button class="nav-item" data-season="5">5 sezonas</button>
+      <button class="nav-item" data-season="6">6 sezonas</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="homeView" class="view">
+      <section class="hero home-hero" id="hero">
+        <img class="hero-image" id="heroImage" src="assets/hero-main.jpg" alt="Peaky Blinders – pagrindinio puslapio kinematografinis viršelis">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span class="eyebrow-line"></span> ŠELBIŲ ŠEIMOS ISTORIJA</p>
+          <h1 id="heroTitle">PEAKY<br>BLINDERS</h1>
+          <p class="hero-kicker" id="heroKicker">~ THE FINAL ~</p>
+          <p class="hero-description" id="heroDescription">Šelbių šeimos istorija artėja prie pabaigos. <strong>Šeštasis sezonas jau netrukus!</strong> Naujausios serijos bus keliamos artimiausiu metu. Serijos bus pateikiamos aukšta vaizdo kokybe ir su lietuvišku įgarsinimu, kai tik bus paruoštos.</p>
+          <p class="announcement"><span class="announcement-dot"></span> 6 sezonas — jau netrukus</p>
+        </div>
+        <div class="hero-index"><span id="heroIndex">06</span><span class="index-rule"></span><span>SEZONAS</span></div>
+      </section>
+
+      <section class="latest-section section-wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow muted">TĘSKIME ŠELBIŲ ISTORIJĄ</p>
+            <h2>Naujausios serijos</h2>
+          </div>
+          <span class="section-note">5 sezonas · 4–6 serijos</span>
+        </div>
+        <div class="episode-cards" id="latestEpisodes">
+          <button class="episode-card" data-episode="4">
+            <span class="episode-number">04</span><span class="episode-thumb thumb-four"></span>
+            <span class="episode-info"><span class="episode-season">5 SEZONAS</span><strong>4 serija</strong><small>Šelbių šeimos istorija tęsiasi</small></span><span class="card-arrow">↗</span>
+          </button>
+          <button class="episode-card" data-episode="5">
+            <span class="episode-number">05</span><span class="episode-thumb thumb-five"></span>
+            <span class="episode-info"><span class="episode-season">5 SEZONAS</span><strong>5 serija</strong><small>Nauji sprendimai ir pavojai</small></span><span class="card-arrow">↗</span>
+          </button>
+          <button class="episode-card" data-episode="6">
+            <span class="episode-number">06</span><span class="episode-thumb thumb-six"></span>
+            <span class="episode-info"><span class="episode-season">5 SEZONAS</span><strong>6 serija</strong><small>Sezono finalas</small></span><span class="card-arrow">↗</span>
+          </button>
+        </div>
+        <p class="content-note"><span class="note-mark">i</span> Serijų kortelės jau paruoštos. Kai įkelsi vaizdo įrašų nuorodas, jas bus galima prijungti prie atitinkamų serijų.</p>
+      </section>
+    </section>
+
+    <section id="seasonView" class="view hidden">
+      <section class="hero season-hero" id="seasonHero">
+        <img class="hero-image" id="seasonImage" src="assets/peaky-1.jpg" alt="Peaky Blinders sezono viršelis">
+        <div class="hero-overlay"></div>
+        <div class="hero-content season-content">
+          <button class="back-home" data-home>← Pagrindinis</button>
+          <p class="eyebrow"><span class="eyebrow-line"></span> PEAKY BLINDERS</p>
+          <h1 id="seasonTitle">1 SEZONAS</h1>
+          <p class="season-year" id="seasonYear">BIRMINGEMAS · 1919</p>
+          <p class="hero-description" id="seasonDescription"></p>
+        </div>
+        <div class="hero-index"><span id="seasonIndex">01</span><span class="index-rule"></span><span>SEZONAS</span></div>
+      </section>
+      <section class="section-wrap season-episodes">
+        <div class="section-heading">
+          <div><p class="eyebrow muted">PASIRINKTAS SEZONAS</p><h2 id="episodesHeading">1 sezono serijos</h2></div>
+          <span class="section-note" id="seasonStatus">Serijos</span>
+        </div>
+        <div id="seasonEpisodes" class="season-episode-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="#pagrindinis">PEAKY BLINDERS</a>
+    <p>Šelbių šeimos istorija · Sezonai 1–6</p>
+    <span class="footer-rule"></span>
+    <small>Neoficialus gerbėjų katalogo projektas. „Peaky Blinders“ pavadinimas ir susiję ženklai priklauso jų teisių turėtojams.</small>
+  </footer>
+
+  <dialog id="episodeDialog" class="episode-dialog">
+    <button class="dialog-close" id="closeDialog" aria-label="Uždaryti">×</button>
+    <p class="eyebrow muted" id="dialogSeason">5 SEZONAS</p>
+    <h2 id="dialogTitle">4 serija</h2>
+    <div class="dialog-screen"><span class="play-symbol">▶</span><p>Serijos vaizdo įrašo nuoroda dar nepridėta.</p></div>
+    <p class="dialog-help">Kai turėsi teisėtą vaizdo įrašo arba įterpimo nuorodą, ją galima prijungti prie šios kortelės faile <code>script.js</code>.</p>
+    <button class="gold-button dialog-ok" id="dialogOk">Gerai</button>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
