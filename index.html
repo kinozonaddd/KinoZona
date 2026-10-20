@@ -1,102 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="lt">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080808">
-  <meta name="description" content="KinoZona – filmų ir serialų katalogas.">
-  <title>KinoZona — filmai ir serialai</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinoZona</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="KinoZona pradžia">KINOZONA</a>
-    <nav aria-label="Pagrindinė navigacija">
-      <a class="nav-link active" href="#pagrindinis">Pagrindinis</a>
-      <a class="nav-link" href="#filmai" data-open-view="movies">Filmai</a>
-      <a class="nav-link" href="#serialai" data-open-view="series">Serialai</a>
-    </nav>
-    <form class="search" id="searchForm" role="search">
-      <button aria-label="Ieškoti" type="submit" class="search-icon">⌕</button>
-      <input id="searchInput" type="search" placeholder="Ieškoti..." aria-label="Ieškoti filmų ir serialų">
-    </form>
-  </header>
+    <header>
+        <div class="logo">KINOZONA</div>
+        <nav>
+            <a href="#pagrindinis">Pagrindinis</a>
+            <a href="#filmai">Filmai</a>
+            <a href="#serialai">Serialai</a>
+        </nav>
+    </header>
 
-  <main id="pagrindinis">
-    <section class="hero" aria-label="Pagrindinis rekomenduojamas serialas">
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <span class="eyebrow">NAUJAUSIAS</span>
-        <h1>PEAKY BLINDERS</h1>
-        <p>Birmingemo gaujų karai, šeimos lojalumas ir nepaliaujama ambicija. Legendinis serialas, kuris tapo kultu.</p>
-        <button class="gold-button" id="heroWatch"><span aria-hidden="true">▶</span> ŽIŪRĖTI DABAR</button>
-      </div>
-      <div class="hero-dots" aria-hidden="true"><i class="selected"></i><i></i><i></i><i></i></div>
-    </section>
+    <main>
+        <!-- Pagrindinis / Naujausias -->
+        <section id="pagrindinis">
+            <div class="latest-banner">
+                <img src="image_2.png" alt="Peaky Blinders The Final">
+                <div class="banner-content">
+                    <h1>PEAKY BLINDERS</h1>
+                    <p>Sugrįžta paskutiniam mūšiui: „Peaky Blinders“ 6-asis sezonas: 1933 metai. Pasibaigus sausajam įstatymui, opijaus verslas atveria duris į naujus, tačiau itin pavojingus aljansus. Šeštasis ir pats paskutinis kultinio serialo sezonas panardina Šelbių šeimą į giliausią iki šiol patirtą krizę.</p>
+                    <a href="#serialai" class="watch-btn">Žiūrėti</a>
+                </div>
+            </div>
 
-    <section class="category-tiles" aria-label="Katalogo skiltys">
-      <button class="category-tile movie-tile" data-open-view="movies">
-        <span class="tile-art film-art" aria-hidden="true">🎞</span>
-        <span class="tile-copy"><strong>FILMAI</strong><small>ŽIŪRĖK SAVO MĖGSTAMUS FILMUS</small></span>
-        <span class="tile-arrow" aria-hidden="true">→</span>
-      </button>
-      <button class="category-tile series-tile" data-open-view="series">
-        <span class="tile-art series-art" aria-hidden="true">♟</span>
-        <span class="tile-copy"><strong>SERIALAI</strong><small>POPULIARIAUSI IR NAUJAUSI SERIALAI</small></span>
-        <span class="tile-arrow" aria-hidden="true">→</span>
-      </button>
-    </section>
+            <!-- Naujausi pasirinkimai -->
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="image_3.png" alt="6 Sezonas 2 Serija">
+                    <h3>6 Sezonas · 2 serija</h3>
+                    <a href="#serijos-6-2">Žiūrėti</a>
+                </div>
+                <div class="card">
+                    <img src="image_4.png" alt="6 Sezonas 1 Serija">
+                    <h3>6 Sezonas · 1 serija</h3>
+                    <a href="#serijos-6-1">Žiūrėti</a>
+                </div>
+            </div>
 
-    <div id="homeView">
-      <section class="catalog-row">
-        <div class="section-heading"><h2>Naujausi</h2><a href="#naujausi" data-open-view="all">Žiūrėti visus <span>›</span></a></div>
-        <div class="poster-row" id="newestRow"></div>
-      </section>
-      <section class="catalog-row">
-        <div class="section-heading"><h2>Populiariausi</h2><a href="#populiariausi" data-open-view="all">Žiūrėti visus <span>›</span></a></div>
-        <div class="poster-row" id="popularRow"></div>
-      </section>
-    </div>
+            <!-- Populiariausi pasirinkimai -->
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="image_5.png" alt="4 Sezonas 1 Serija">
+                    <h3>4 Sezonas · 1 serija</h3>
+                    <a href="#serijos-4-1">Žiūrėti</a>
+                </div>
+                <div class="card">
+                    <img src="image_6.png" alt="2 Sezonas 3 Serija">
+                    <h3>Peaky Blinders · 2 Sezonas 3 serija</h3>
+                    <a href="#serijos-2-3">Žiūrėti</a>
+                </div>
+            </div>
+        </section>
 
-    <section id="catalogView" class="catalog-page hidden">
-      <div class="catalog-title-line">
-        <button id="backHome" class="back-button">← Pagrindinis</button>
-        <h2 id="catalogTitle">Serialai</h2>
-      </div>
-      <div id="catalogGrid" class="catalog-grid"></div>
-    </section>
+        <!-- Filmai (Tuščia) -->
+        <section id="filmai">
+            <h2>Filmai</h2>
+            <div class="no-movies-message">
+                Šiuo momentu filmų nėra
+            </div>
+        </section>
 
-    <section id="detailView" class="detail-page hidden">
-      <button id="backCatalog" class="back-button">← Grįžti į serialus</button>
-      <div class="detail-intro">
-        <div>
-          <span class="eyebrow">SERIALAS</span>
-          <h2 id="detailTitle">Peaky Blinders</h2>
-          <p id="detailDescription">Galinga Birmingemo gauja, vadovaujama Tomo Šelbio. Įtampa, politika, šeima ir pavojingi priešai.</p>
-        </div>
-        <div class="season-picker">
-          <label for="seasonSelect">Sezonas</label>
-          <select id="seasonSelect">
-            <option value="1">1 sezonas</option><option value="2">2 sezonas</option>
-            <option value="3">3 sezonas</option><option value="4">4 sezonas</option><option value="5">5 sezonas</option>
-          </select>
-        </div>
-      </div>
-      <h3 class="episodes-heading">Serijos</h3>
-      <div id="episodesList" class="episodes-list"></div>
-    </section>
+        <!-- Serialai / Peaky Blinders 1 Sezonas -->
+        <section id="serialai">
+            <h2>Peaky Blinders</h2>
+            <p class="series-desc">Peaky Blinders – tai kultinė britų kriminalinė drama, pasakojanti apie Šelbių šeimos ir jų vadovaujamos gaujos iškilimą nuo gatvės nusikaltėlių iki pasaulinio lygio politinių ir verslo magnatų.</p>
+            
+            <div class="episodes-list">
+                <!-- 1 Serija -->
+                <div class="episode-card">
+                    <h3>1 sezonas · 1 serija</h3>
+                    <p>Tomis Šelbis per klaidą pavagia vyriausybės ginklų siuntą, o į Birmingemą juos surasti atvyksta inspektorius Kempbelas.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/bA__fScME3A?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+                    </div>
+                </div>
 
-    <section id="playerView" class="player-page hidden">
-      <button id="backEpisodes" class="back-button">← Grįžti į serijas</button>
-      <h2 id="playerTitle">Peaky Blinders — 1 serija</h2>
-      <div id="videoContainer" class="video-container">
-        <p>Čia bus rodomas pasirinktas vaizdo įrašas.</p>
-      </div>
-      <p class="player-note">Vaizdo įrašams naudok savo turinį arba šaltinius, kurie leidžia įterpimą į kitą svetainę.</p>
-    </section>
-  </main>
+                <!-- 2 Serija -->
+                <div class="episode-card">
+                    <h3>1 sezonas · 2 serija</h3>
+                    <p>Tomis pradeda karą su vietiniais čigonais (Li šeima) ir atsisako atiduoti pavogtus ginklus Kempbelui.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/cse5nQH9eok?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+                    </div>
+                </div>
 
-  <footer><span>KINOZONA</span><small>Asmeninis filmų ir serialų katalogo projektas</small></footer>
-  <script src="script.js"></script>
+                <!-- 3 Serija -->
+                <div class="episode-card">
+                    <h3>1 sezonas · 3 serija</h3>
+                    <p>Greisė padeda Tomiui paslėpti ginklus nuo policijos kratos, o Fredis su Ada slapta susituokia.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/Vh29BrG7RPA?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+                    </div>
+                </div>
+
+                <!-- 4 Serija -->
+                <div class="episode-card">
+                    <h3>1 sezonas · 4 serija</h3>
+                    <p>Bilis Kimberis pasisamdo „Peaky Blinders“ apsaugai, o Tomis išduoda savo sesers vyrą Fredį policijai, kad apsaugotų šeimos verslą.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/qkfHwqH5pOc?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+                    </div>
+                </div>
+
+                <!-- 5 Serija -->
+                <div class="episode-card">
+                    <h3>1 sezonas · 5 serija</h3>
+                    <p>Greisė sužino, kur paslėpti pavogti ginklai, ir išduoda jų vietą Kempbelul, tačiau kartu įsimyli Tomį.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/ga3boRKxTeI?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+                    </div>
+                </div>
+
+                <!-- 6 Serija -->
+                <div class="episode-card">
+                    <h3>1 sezonas · 6 serija</h3>
+                    <p>Kimberį ir perima jo lažybų imperiją. Fredis išlaisvinamas bet ivyksta labai komplikuoti reikalai.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/GSaLGE6g7cI?rel=0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
